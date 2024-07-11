@@ -90,6 +90,13 @@ git cherry-pick commit applies the changes introduced by the named commit on the
 
 Another common use for cherry-pick is to rebuild a series of commits by selectively picking a batch from one breanch and introducing them onto a new branch
 
+Example: 
+$ git checkout main
+    $ git cherry-pick my_dev~1     # Y
+    $ git cherry-pick my_dev~3    # W
+    $ git cherry-pick my_dev~2    # X
+    $ git cherry-pick my_dev      # Z
+
 ## Branch Names Dos and Don'ts: 
 - You can use a forward slash to create a hierachical name scheme. However the name cannot end with a slash
 - No slash-separated component can begin with a dot: feature/.new is invalid
