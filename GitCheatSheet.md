@@ -97,6 +97,12 @@ $ git checkout main
     $ git cherry-pick my_dev~2    # X
     $ git cherry-pick my_dev      # Z
 
+You can also use git cherry-pick X..Z
+
+### git rebase
+git rebase can be used to forward port, or move your commits up on a branch. 
+
+
 ## Branch Names Dos and Don'ts: 
 - You can use a forward slash to create a hierachical name scheme. However the name cannot end with a slash
 - No slash-separated component can begin with a dot: feature/.new is invalid
