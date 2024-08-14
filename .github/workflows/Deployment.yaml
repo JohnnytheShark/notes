@@ -1,0 +1,20 @@
+name: Deploy to Environment
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: ${{ matrix.environment }}
+    strategy:
+      matrix:
+        environment: [qa, production]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Deploy to environment
+        run: |
+          # Deployment commands specific to the environment
+          echo "Deploying to ${{ matrix.environment }} environment"
