@@ -13,8 +13,7 @@ jobs:
         run: echo Hello, world!
     
   DeployDev:
-    name: Deploy to Dev 
-    if: github.event_name == 'pull_request'
+    name: Deploy to Dev
     needs: [Build]
     runs-on: ubuntu-latest
     environment: 
@@ -22,7 +21,7 @@ jobs:
       url: 'http://dev.myapp.com'
     steps:
       - name: Deploy
-        run: echo I am deploying! 
+        run: echo I am deploying "${{ vars.ENV_TEST_VARIABLE }}"  >> $GITHUB_STEP_SUMMARY
     
   DeployStaging:
     name: Deploy to Staging 

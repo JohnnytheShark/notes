@@ -30,5 +30,5 @@ Environment Variables take precedence over repository secrets
 
 You can also lock down the deployments to selected approvers. Say a workflow is about to deploy to production, right before it does it will ask the approvers if it is okay to deploy or not.
 
-
+Allows our team to be able to view what has been deployed to each environment and when. By doing so it allows for greater visibility of seeing what is currently in the deployed environments.
 
