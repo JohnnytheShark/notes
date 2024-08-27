@@ -15,7 +15,7 @@ jobs:
             - name: Get All Releases
               id: get_releases
               run: |
-                releases=$(gh release list --repo ${{ github.repository }} --json tagName,createdAt)
+                releases=$(gh release list --repo ${{ github.repository }} --json tagName,createdAt,isPrerelease)
                 echo "$releases" > releases.json
             
             - name: Sort and Select Latest Release
