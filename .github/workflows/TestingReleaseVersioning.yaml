@@ -20,6 +20,6 @@ jobs:
             
             - name: Sort and Select Latest Release
               run: |
-                sorted_releases=$(cat releases.json | jq -s '.[0] | map(select(.isPrerelease | not)) | sort_by(.createdAt) | reverse')
+                sorted_releases=$(cat releases.json | jq -r '[.[] | select(.isPrerelease == false)] | sort_by(.createdAt) | reverse')
                 latest_release=$(echo "$sorted_releases" | jq -r '.[0].tagName')
                 echo "Latest release version: $latest_release"
