@@ -13,9 +13,10 @@ jobs:
             - name: Get All Releases
               id: releases
               run: |
-                releases=$(gh release view --json tag_name --limit 100)
+                releases=$(gh release list --repo ${{ github.repository }} --json tag_name,created_at)
             
-            - name: Extract Latest Version
+            - name: Sort and Select Latest Release
               run: |
-                latest_version=$(echo "$releases" | jq -r '.[0].tag_name')
-                echo "Latest release version: $latest_version"
+                sorted_releases=$(echo "$releases" | jq -s '.[] | {tag_name, created_at}' | sort_by(.created_at) | reverse)
+                latest_release=$(echo "$sorted_releases" | head -n 1 | jq -r '.tag_name')
+                echo "Latest release version: $latest_release"
