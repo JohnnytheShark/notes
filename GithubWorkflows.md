@@ -32,3 +32,19 @@ You can also lock down the deployments to selected approvers. Say a workflow is 
 
 Allows our team to be able to view what has been deployed to each environment and when. By doing so it allows for greater visibility of seeing what is currently in our deployed environments. <- This is the major benefit I see in utilizing it. 
 
+Potential Advantages: 
+1. Deployment Tracking:
+- Visibility: knowing which branch is deployed
+- Auditing: Track changes and deployments over time which help in compliance or regulatory requirements 
+
+2. Environment Specific Configs 
+- Secrets Management (Store env specific secrets)
+- Configuration Management - Manage Configuration Files or settings tailored to each environment 
+
+3. Workflow Orchestration 
+- Complex Deployments: Github actions and environment can work together effectively
+- Dependency Management: If your deployments have dependencies between environments, environments can help manage these relationships.
+
+4. Automation 
+Automated Deployments: Environments can be integrated with CI/CD pipelines for automated deployments, saving time and reducing errors. 
+
