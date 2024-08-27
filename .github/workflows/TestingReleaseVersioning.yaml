@@ -1,4 +1,4 @@
-name: Test Release Version 
+name: Test Release Version
 
 on:
     workflow_dispatch
@@ -7,5 +7,11 @@ jobs:
     Test-Release: 
         runs-on: ubuntu-latest
         steps: 
-            - name: Echo_Reference
-              run: echo ${{github.ref_name}}
+            - name: Checkout Repository
+              uses: actions/checkout@v3
+            
+            - name: List Releases
+              run: gh release view --json tag_name --limit 1
+            
+            - name: Extract Version Number
+              run: echo "Latest release version: $(jq -r '.tag_name' <(gh release view --json tag_name --limit 1))"
