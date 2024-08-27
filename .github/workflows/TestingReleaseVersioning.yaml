@@ -13,15 +13,13 @@ jobs:
               uses: actions/checkout@v3
             
             - name: Get All Releases
-              id: releases
+              id: get_releases
               run: |
                 releases=$(gh release list --repo ${{ github.repository }} --json tagName,createdAt)
-                echo $releases
+                echo "$releases" > releases.json
             
             - name: Sort and Select Latest Release
               run: |
-                filter1 = '.[] | {tagName, createdAt}'
-                sort_field='createdAt'
-                sorted_releases=$(echo "$releases" | jq -s "$filter1" | sort_by("sort_field") | reverse)
-                latest_release=$(echo "$sorted_releases" | head -n 1 | jq -r '.tagName')
+                sorted_releases=$(cat releases.json | jq -s '.[0] | sort_by(.createdAt) | reverse')
+                latest_release=$(echo "$sorted_releases" | jq -r '.[0].tagName')
                 echo "Latest release version: $latest_release"
