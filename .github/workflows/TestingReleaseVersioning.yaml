@@ -16,9 +16,12 @@ jobs:
               id: releases
               run: |
                 releases=$(gh release list --repo ${{ github.repository }} --json tagName,createdAt)
+                echo $releases
             
             - name: Sort and Select Latest Release
               run: |
-                sorted_releases=$(echo "$releases" | jq -s ".[] | {tagName, createdAt}" | sort_by(createdAt) | reverse)
+                filter1 = '.[] | {tagName, createdAt}'
+                sort_field='createdAt'
+                sorted_releases=$(echo "$releases" | jq -s "$filter1" | sort_by("sort_field") | reverse)
                 latest_release=$(echo "$sorted_releases" | head -n 1 | jq -r '.tagName')
                 echo "Latest release version: $latest_release"
