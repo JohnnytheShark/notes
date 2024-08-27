@@ -15,10 +15,10 @@ jobs:
             - name: Get All Releases
               id: releases
               run: |
-                releases=$(gh release list --repo ${{ github.repository }} --json tag_name,created_at)
+                releases=$(gh release list --repo ${{ github.repository }} --json tagName,createdAt)
             
             - name: Sort and Select Latest Release
               run: |
-                sorted_releases=$(echo "$releases" | jq -s '.[] | {tag_name, created_at}' | sort_by(.created_at) | reverse)
-                latest_release=$(echo "$sorted_releases" | head -n 1 | jq -r '.tag_name')
+                sorted_releases=$(echo "$releases" | jq -s '.[] | {tagName, createdAt}' | sort_by(.createdAt) | reverse)
+                latest_release=$(echo "$sorted_releases" | head -n 1 | jq -r '.tagName')
                 echo "Latest release version: $latest_release"
