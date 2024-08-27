@@ -19,6 +19,6 @@ jobs:
             
             - name: Sort and Select Latest Release
               run: |
-                sorted_releases=$(echo "$releases" | jq -s '.[] | {tagName, createdAt}' | sort_by(createdAt) | reverse)
+                sorted_releases=$(echo "$releases" | jq -s ".[] | {tagName, createdAt}" | sort_by(createdAt) | reverse)
                 latest_release=$(echo "$sorted_releases" | head -n 1 | jq -r '.tagName')
                 echo "Latest release version: $latest_release"
